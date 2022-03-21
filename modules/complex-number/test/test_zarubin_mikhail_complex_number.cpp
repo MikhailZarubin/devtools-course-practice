@@ -11,7 +11,7 @@ TEST(ComplexNumberTesting, can_create_complex_number_with_default_constructor) {
     ASSERT_NO_THROW(ComplexNumber());
 }
 
-TEST(ComplexNumberTesting, can_create_complex_number_constructor_with_parameters) {
+TEST(ComplexNumberTesting, can_create_complex_number_with_parameters) {
     ASSERT_NO_THROW(ComplexNumber(1.0, 1.0));
 }
 
