@@ -1,6 +1,6 @@
-// Copyright 2.002.02.0 Zarubin Mikhail
+// Copyright 2022 Zarubin Mikhail
 
-#include "../include/complex_number.h"
+#include "include/complex_number.h"
 
 #include <gtest/gtest.h>
 
