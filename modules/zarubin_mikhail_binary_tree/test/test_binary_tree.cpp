@@ -1,6 +1,7 @@
 // Copyright 2022 Zarubin Mikhail
 
 #include <gtest/gtest.h>
+#include <vector>
 
 #include "include/binary_tree.h"
 
@@ -59,17 +60,19 @@ TEST(Zarubin_Mikhail_Binary_Tree, get_size_tree_is_correct) {
     ASSERT_NO_THROW(tree.getSize());
 }
 
-TEST(Zarubin_Mikhail_Binary_Tree, insert_a_non_existent_value_changes_size_tree) {
+TEST(Zarubin_Mikhail_Binary_Tree,
+    insert_a_non_existent_value_changes_size_tree) {
     BinaryTree<int> tree;
-	
+
     auto startSize = tree.getSize();
     tree.insertByValue(5);
     auto finishSize = tree.getSize();
-
+    
     EXPECT_EQ(startSize, finishSize - 1);
 }
 
-TEST(Zarubin_Mikhail_Binary_Tree, insert_an_existing_value_no_changes_size_tree) {
+TEST(Zarubin_Mikhail_Binary_Tree,
+    insert_an_existing_value_no_changes_size_tree) {
     BinaryTree<int> tree;
     tree.insertByValue(5);
 
@@ -80,7 +83,8 @@ TEST(Zarubin_Mikhail_Binary_Tree, insert_an_existing_value_no_changes_size_tree)
     EXPECT_EQ(startSize, finishSize);
 }
 
-TEST(Zarubin_Mikhail_Binary_Tree, delete_a_non_existent_value_no_changes_size_tree) {
+TEST(Zarubin_Mikhail_Binary_Tree,
+    delete_a_non_existent_value_no_changes_size_tree) {
     BinaryTree<int> tree;
 
     auto startSize = tree.getSize();
