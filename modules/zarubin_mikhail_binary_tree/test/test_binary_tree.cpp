@@ -67,7 +67,7 @@ TEST(Zarubin_Mikhail_Binary_Tree,
     auto startSize = tree.getSize();
     tree.insertByValue(5);
     auto finishSize = tree.getSize();
-    
+
     EXPECT_EQ(startSize, finishSize - 1);
 }
 
