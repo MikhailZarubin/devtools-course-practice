@@ -27,7 +27,7 @@ class BinaryTree {
         Vertex* previousVertex, * currentVertex;
         Direction lastStep;
 
-        SearchState(Vertex* _previousVertex = nullptr, 
+        SearchState(Vertex* _previousVertex = nullptr,
             Vertex* _currentVertex = nullptr,
             Direction _lastStep = Direction::LEFT);
         void reset(Vertex* _previousVertex = nullptr,
@@ -180,22 +180,25 @@ void BinaryTree<Type>::deleteByState(const Type& value) {
     bool rootFlag = searchState.currentVertex == root;
     treeSize--;
 
-    if (searchState.currentVertex->leftEdge == nullptr && searchState.currentVertex->rightEdge == nullptr) {
+    if (searchState.currentVertex->leftEdge == nullptr
+        && searchState.currentVertex->rightEdge == nullptr) {
         delete searchState.currentVertex;
         searchState.currentVertex = nullptr;
-    }
-    else {
-        if (searchState.currentVertex->leftEdge == nullptr && searchState.currentVertex->rightEdge != nullptr) {
+    } else {
+        if (searchState.currentVertex->leftEdge == nullptr 
+            && searchState.currentVertex->rightEdge != nullptr) {
             auto deletedVertex = searchState.currentVertex->rightEdge;
             searchState.currentVertex->replaceVertex(searchState.currentVertex->rightEdge);
             delete deletedVertex;
         } else {
-            if (searchState.currentVertex->leftEdge != nullptr && searchState.currentVertex->rightEdge == nullptr) {
+            if (searchState.currentVertex->leftEdge != nullptr 
+                && searchState.currentVertex->rightEdge == nullptr) {
                 auto deletedVertex = searchState.currentVertex->leftEdge;
                 searchState.currentVertex->replaceVertex(searchState.currentVertex->leftEdge);
                 delete deletedVertex;
             } else {
-                SearchState deleteState(searchState.currentVertex, searchState.currentVertex->rightEdge, Direction::RIGHT);
+                SearchState deleteState(searchState.currentVertex,
+                    searchState.currentVertex->rightEdge, Direction::RIGHT);
 
                 while (deleteState.currentVertex->leftEdge != nullptr) {
                     deleteState.goToLeft();
