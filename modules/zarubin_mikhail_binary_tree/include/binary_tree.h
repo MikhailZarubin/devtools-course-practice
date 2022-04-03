@@ -1,7 +1,7 @@
 // Copyright 2022 Zarubin Mikhail
 
-#ifndef MODULES_ZARUBIN_MIKHAIL_BINARY_TREE_H_
-#define MODULES_ZARUBIN_MIKHAIL_BINARY_TREE_H_
+#ifndef MODULES_ZARUBIN_MIKHAIL_BINARY_TREE_INCLUDE_BINARY_TREE_H_
+#define MODULES_ZARUBIN_MIKHAIL_BINARY_TREE_INCLUDE_BINARY_TREE_H_
 
 #include <vector>
 
@@ -9,13 +9,13 @@
 template <class Type>
 class BinaryTree {
     struct Vertex {
-		Type value;
-		Vertex* leftEdge, *rightEdge;
+        Type value;
+        Vertex* leftEdge, *rightEdge;
 
-		Vertex(const Type& _value = Type(),
-			Vertex* _leftEdge = nullptr, Vertex* _rightEdge = nullptr);
-		void replaceValue (const Type& newValue);
-		void replaceVertex(Vertex* value);
+        Vertex(const Type& _value = Type(),
+	    	Vertex* _leftEdge = nullptr, Vertex* _rightEdge = nullptr);
+        void replaceValue (const Type& newValue);
+        void replaceVertex(Vertex* value);
 	};
 
 	enum class Direction {
@@ -27,7 +27,7 @@ class BinaryTree {
 		Vertex* previousVertex, *currentVertex;
 		Direction lastStep;
 
-		SearchState(Vertex* _previousVertex = nullptr,
+	    SearchState(Vertex* _previousVertex = nullptr,
 			Vertex* _currentVertex = nullptr, Direction _lastStep = Direction::LEFT);
 		void reset(Vertex* _previousVertex = nullptr, Vertex* _currentVertex = nullptr);
 		void goToLeft();
@@ -47,7 +47,7 @@ public:
 	BinaryTree(const std::vector<Type>& data);
 
 	bool findByValue(const Type& value);
-	void deleteByValue(const Type& value);
+    void deleteByValue(const Type& value);
 	void insertByValue(const Type& value);
 
 	std::size_t getSize() const;
@@ -223,4 +223,4 @@ size_t BinaryTree<Type>::getSize() const {
 	return treeSize;
 }
 
-#endif  // MODULES_ZARUBIN_MIKHAIL_BINARY_TREE_H_
+#endif  // MODULES_ZARUBIN_MIKHAIL_BINARY_TREE_INCLUDE_BINARY_TREE_H_
