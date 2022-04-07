@@ -14,11 +14,11 @@ BinaryTree::Vertex::Vertex(const Type& _value,
     leftEdge(_leftEdge),
     rightEdge(_rightEdge) {
 }
- 
+
 void BinaryTree::Vertex::replaceValue(const Type& newValue) {
     value = newValue;
 }
- 
+
 void BinaryTree::Vertex::replaceVertex(Vertex* vertex) {
     value = vertex->value;
     leftEdge = vertex->leftEdge;
@@ -38,19 +38,19 @@ void BinaryTree::SearchState::reset(Vertex* _previousVertex,
     currentVertex = _currentVertex;
     lastStep = Direction::LEFT;
 }
- 
+
 void BinaryTree::SearchState::goToLeft() {
     lastStep = Direction::LEFT;
     previousVertex = currentVertex;
     currentVertex = currentVertex->leftEdge;
 }
- 
+
 void BinaryTree::SearchState::goToRight() {
     lastStep = Direction::RIGHT;
     previousVertex = currentVertex;
     currentVertex = currentVertex->rightEdge;
 }
- 
+
 void BinaryTree::SearchState::replaceLink(Vertex* vertex) {
     switch (lastStep) {
     case(Direction::LEFT):
@@ -63,7 +63,7 @@ void BinaryTree::SearchState::replaceLink(Vertex* vertex) {
         break;
     }
 }
- 
+
 BinaryTree::BinaryTree() :
     root(nullptr),
     searchState(),
@@ -75,7 +75,7 @@ BinaryTree::BinaryTree(const std::vector<Type>& data) : BinaryTree() {
         insertByValue(value);
     }
 }
- 
+
 bool BinaryTree::findByValue(const Type& value) {
     searchState.reset(nullptr, root);
 
@@ -84,12 +84,10 @@ bool BinaryTree::findByValue(const Type& value) {
 
         if (value < currentValue) {
             searchState.goToLeft();
-        }
-        else {
+        } else {
             if (value > currentValue) {
                 searchState.goToRight();
-            }
-            else {
+            } else {
                 return true;
             }
         }
@@ -102,7 +100,7 @@ void BinaryTree::insertByState(const Type& value) {
     treeSize++;
     searchState.replaceLink(new Vertex(value));
 }
- 
+
 void BinaryTree::insertByValue(const Type& value) {
     if (root == nullptr) {
         root = new Vertex(value);
@@ -124,8 +122,7 @@ void BinaryTree::deleteByState(const Type& value) {
         && searchState.currentVertex->rightEdge == nullptr) {
         delete searchState.currentVertex;
         searchState.currentVertex = nullptr;
-    }
-    else {
+    } else {
         if (searchState.currentVertex->leftEdge == nullptr
             && searchState.currentVertex->rightEdge != nullptr) {
             auto deletedVertex = searchState.currentVertex->rightEdge;
@@ -165,15 +162,14 @@ void BinaryTree::deleteByState(const Type& value) {
         searchState.replaceLink(searchState.currentVertex);
     }
 }
- 
+
 void BinaryTree::deleteByValue(const Type& value) {
     bool success = findByValue(value);
     if (success) {
         deleteByState(value);
     }
 }
- 
+
 size_t BinaryTree::getSize() const {
     return treeSize;
 }
-
