@@ -129,16 +129,14 @@ void BinaryTree::deleteByState(const Type& value) {
             searchState.currentVertex->
                 replaceVertex(searchState.currentVertex->rightEdge);
             delete deletedVertex;
-        }
-        else {
+        } else {
             if (searchState.currentVertex->leftEdge != nullptr
                 && searchState.currentVertex->rightEdge == nullptr) {
                 auto deletedVertex = searchState.currentVertex->leftEdge;
                 searchState.currentVertex->
                     replaceVertex(searchState.currentVertex->leftEdge);
                 delete deletedVertex;
-            }
-            else {
+            } else {
                 SearchState deleteState(searchState.currentVertex,
                     searchState.currentVertex->rightEdge, Direction::RIGHT);
 
@@ -157,8 +155,7 @@ void BinaryTree::deleteByState(const Type& value) {
 
     if (rootFlag) {
         root = searchState.currentVertex;
-    }
-    else {
+    } else {
         searchState.replaceLink(searchState.currentVertex);
     }
 }
