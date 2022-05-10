@@ -1,9 +1,10 @@
 // Copyright 2022 Samoiluk Anastasiya
 
-#ifndef MODULES_SAMOILUK_A_STACK_INCLUDE_SAMOILUK_A_STACK_H_
-#define MODULES_SAMOILUK_A_STACK_INCLUDE_SAMOILUK_A_STACK_H_
+#ifndef MODULES_SAMOILUK_A_STACK_INCLUDE_STACK_H_
+#define MODULES_SAMOILUK_A_STACK_INCLUDE_STACK_H_
 
 #include <string>
+#include <vector>
 
 template <class T>
 class Stack {
@@ -12,10 +13,11 @@ class Stack {
     int index;
  public:
     explicit Stack(int _size = 100);
+    explicit Stack(const std::vector<T>& data);
     Stack(const Stack& s);
     ~Stack();
 
-    void push(T value);
+    void push(const T& value);
     T pop();
 
     T getLast();
@@ -23,6 +25,8 @@ class Stack {
 
     bool isEmpty();
     bool isFull();
+
+    std::string convertToString() const;
 
     Stack& operator=(const Stack& s);
 };
@@ -32,6 +36,13 @@ Stack<T>::Stack(int _size) : size(_size) {
     if (size < 0) throw "Negative stack size";
     index = -1;
     mem = new T[size];
+}
+
+template <class T> 
+Stack<T>::Stack(const std::vector<T>& data) : Stack<T>(data.size() * 2) {
+    for (const T elem : data) {
+        this->push(elem);
+    }
 }
 
 template <class T>
@@ -45,12 +56,12 @@ Stack<T>::Stack(const Stack& s) {
 
 template <class T>
 Stack<T>::~Stack() {
-    if (mem != NULL)
+    if (mem != nullptr)
         delete[] mem;
 }
 
 template <class T>
-void Stack<T>::push(T value) {
+void Stack<T>::push(const T& value) {
     if (isFull()) throw "isFull";
     index++;
     mem[index] = value;
@@ -76,6 +87,16 @@ bool Stack<T>::isEmpty() { return index < 0; }
 template <class T>
 bool Stack<T>::isFull() { return index >= size - 1; }
 
+template <class T> 
+std::string Stack<T>::convertToString() const {
+    Stack<T> copyStack(*this);
+    std::string result = "";
+    while (!copyStack.isEmpty()) {
+        result.append(std::to_string(copyStack.pop()) + " ");
+    }
+    return result;
+}
+
 template <class T>
 Stack<T>& Stack<T>::operator=(const Stack<T>& s) {
     if (&s == this) return *this;
@@ -88,4 +109,4 @@ Stack<T>& Stack<T>::operator=(const Stack<T>& s) {
     return *this;
 }
 
-#endif  // MODULES_SAMOILUK_A_STACK_INCLUDE_SAMOILUK_A_STACK_H_
+#endif  // MODULES_SAMOILUK_A_STACK_INCLUDE_STACK_H_
