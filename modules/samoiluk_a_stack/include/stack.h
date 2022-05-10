@@ -38,7 +38,7 @@ Stack<T>::Stack(int _size) : size(_size) {
     mem = new T[size];
 }
 
-template <class T> 
+template <class T>
 Stack<T>::Stack(const std::vector<T>& data) : Stack<T>(data.size() * 2) {
     for (const T elem : data) {
         this->push(elem);
@@ -87,7 +87,7 @@ bool Stack<T>::isEmpty() { return index < 0; }
 template <class T>
 bool Stack<T>::isFull() { return index >= size - 1; }
 
-template <class T> 
+template <class T>
 std::string Stack<T>::convertToString() const {
     Stack<T> copyStack(*this);
     std::string result = "";
