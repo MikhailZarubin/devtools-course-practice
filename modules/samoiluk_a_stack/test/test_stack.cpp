@@ -1,7 +1,7 @@
 // Copyright 2022 Samoiluk Anastasiya
 
 #include <gtest/gtest.h>
-#include "include/samoiluk_a_stack.h"
+#include "include/stack.h"
 
 TEST(Stack, can_create_stack_with_positive_length) {
     ASSERT_NO_THROW(Stack<int> s(5));
@@ -9,6 +9,10 @@ TEST(Stack, can_create_stack_with_positive_length) {
 
 TEST(Stack, cant_create_stack_with_negative_length) {
     ASSERT_ANY_THROW(Stack<int> s(-5));
+}
+
+TEST(Stack, can_create_stack_from_vector) {
+    ASSERT_NO_THROW(Stack<int>({ 1, 2, 3 }));
 }
 
 TEST(Stack, can_create_copied_stack) {
@@ -112,4 +116,14 @@ TEST(Stack, can_assign_stacks_of_different_size_correctly) {
     s1 = s;
 
     EXPECT_DOUBLE_EQ(s.getLast(), s1.getLast());
+}
+
+TEST(Stack, can_convert_stack_to_string) {
+    Stack<int> s({ 1, 2, 3 });
+    ASSERT_NO_THROW(s.convertToString());
+}
+
+TEST(Stack, convert_to_string_is_correct) {
+    Stack<int> s({ 1, 2, 3 });
+    EXPECT_EQ(s.convertToString(), "3 2 1 ");
 }
