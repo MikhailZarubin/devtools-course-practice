@@ -3,9 +3,9 @@
 #include "include/stack_application.h"
 #include "include/stack.h"
 
+#include <string.h>
 #include <sstream>
 #include <string>
-#include <string.h>
 #include <vector>
 
 StackApplication::StackApplication() : m_message() {}
